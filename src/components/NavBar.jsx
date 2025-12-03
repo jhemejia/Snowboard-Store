@@ -22,7 +22,7 @@ function NavBar() {
         <div className="flex flex-row items-center justify-between w-full">
           {/* Logo */}
           <div className="flex items-center gap-2">
-            <img src={"./src/assets/logo.png"} alt="Snowboard Store" className="w-10 h-10" />
+            <img src={"/logo.png"} alt="Store Logo" className="w-10 h-10" />
             <span className="text-xl font-bold">Snowboard Store</span>
           </div>
 
