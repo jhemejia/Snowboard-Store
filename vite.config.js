@@ -7,6 +7,7 @@ export default defineConfig({
   preview: {
     port: 4173,
     host: true,
+    allowedHosts: ["snowboard-store.jhersonmejia.com", ".jhersonmejia.com"],
   },
   server: {
     port: 5173,
