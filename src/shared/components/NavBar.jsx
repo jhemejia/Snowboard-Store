@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { ChevronDown } from "lucide-react"
+import { Link } from "react-router-dom"
 import CartWidget from "./CartWidget"
 
 function NavBar() {
@@ -21,10 +22,10 @@ function NavBar() {
       <nav className="container mx-auto px-4 py-4">
         <div className="flex flex-row items-center justify-between w-full">
           {/* Logo */}
-          <div className="flex items-center gap-2">
+          <Link to="/" className="flex items-center gap-2">
             <img src={"/logo.png"} alt="Store Logo" className="w-10 h-10" />
             <span className="text-xl font-bold">Snowboard Store</span>
-          </div>
+          </Link>                    
 
           {/* Navigation Link with Dropdown */}
           <div className="flex items-center relative">
@@ -40,17 +41,24 @@ function NavBar() {
             {isDropdownOpen && (
               <div className="absolute top-full left-0 mt-2 w-48 bg-popover border border-border rounded-md shadow-lg z-50">
                 <ul className="py-2">
+                  <li>
+                    <Link
+                      to="/products"
+                      className="block px-4 py-2 text-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
+                      onClick={() => setIsDropdownOpen(false)}
+                    >
+                      All Products
+                    </Link>
+                  </li>
                   {categories.map((category) => (
                     <li key={category}>
-                      <a
-                        href="#"
+                      <Link
+                        to={`/products?category=${encodeURIComponent(category)}`}
                         className="block px-4 py-2 text-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
                         onClick={() => setIsDropdownOpen(false)}
-                        onMouseLeave={() => setIsDropdownOpen(false)}
-                        onMouseEnter={() => setIsDropdownOpen(true)}
                       >
                         {category}
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -60,7 +68,9 @@ function NavBar() {
 
           {/* Cart Widget */}
           <div className="flex justify-end">
-            <CartWidget />
+            <Link to="/cart">
+              <CartWidget />
+            </Link>
           </div>
         </div>
       </nav>
